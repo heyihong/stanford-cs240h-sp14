@@ -42,81 +42,81 @@ main = hspec $ describe "Testing Globber" $ do
             matchGlob "a[b-z]d" "add" `shouldBe` True
 
 
-    -- describe "set match" $ do
-    --     describe "[ab[c]" $ do
-    --         it "matches a" $
-    --             matchGlob "[ab[c]" "a" `shouldBe` True
-    --         it "matches b" $
-    --             matchGlob "[ab[c]" "b" `shouldBe` True
-    --         it "matches [" $
-    --             matchGlob "[ab[c]" "[" `shouldBe` True
-    --         it "matches c" $
-    --             matchGlob "[ab[c]" "c" `shouldBe` True
-    --     describe "[abcd]" $ do
-    --         it "matches a" $
-    --             matchGlob "[abcd]" "a" `shouldBe` True
-    --         it "matches b" $
-    --             matchGlob "[abcd]" "b" `shouldBe` True
-    --         it "matches c" $
-    --             matchGlob "[abcd]" "c" `shouldBe` True
-    --         it "matches d" $
-    --             matchGlob "[abcd]" "d" `shouldBe` True
-    --     describe "[\\a-\\z]" $ do
-    --         it "matches a" $
-    --             matchGlob "[\\a-\\z]" "a" `shouldBe` True
-    --         it "matches b" $
-    --             matchGlob "[\\a-\\z]" "b" `shouldBe` True
-    --         it "matches y" $
-    --             matchGlob "[\\a-\\z]" "y" `shouldBe` True
-    --         it "matches z" $
-    --             matchGlob "[\\a-\\z]" "z" `shouldBe` True
-    --         it "not matches \\" $
-    --             matchGlob "[\\a-\\z]" "\\" `shouldBe` False
-    --     describe "[-abc]" $ do
-    --         it "matches a" $
-    --             matchGlob "[-abc]" "-" `shouldBe` True
-    --         it "matches b" $
-    --             matchGlob "[-abc]" "a" `shouldBe` True
-    --         it "matches c" $
-    --             matchGlob "[-abc]" "b" `shouldBe` True
-    --         it "matches z" $
-    --             matchGlob "[-abc]" "c" `shouldBe` True
-    --     describe "[abc-]" $ do
-    --         it "matches a" $
-    --             matchGlob "[abc-]" "a" `shouldBe` True
-    --         it "matches b" $
-    --             matchGlob "[abc-]" "b" `shouldBe` True
-    --         it "matches c" $
-    --             matchGlob "[abc-]" "c" `shouldBe` True
-    --         it "matches -" $
-    --             matchGlob "[abc-]" "-" `shouldBe` True
-    --     describe "[--]" $ do
-    --         it "matches -" $
-    --             matchGlob "[--]" "-" `shouldBe` True
-    --     describe "[---]" $ do
-    --         it "matches -" $
-    --             matchGlob "[---]" "-" `shouldBe` True
-    --     describe "[----]" $ do
-    --         it "matches -" $
-    --             matchGlob "[----]" "-" `shouldBe` True
-    --     describe "[a-d-z]" $ do
-    --         it "matches a" $
-    --             matchGlob "[a-d-z]" "a" `shouldBe` True
-    --         it "matches b" $
-    --             matchGlob "[a-d-z]" "b" `shouldBe` True
-    --         it "matches c" $
-    --             matchGlob "[a-d-z]" "c" `shouldBe` True
-    --         it "matches d" $
-    --             matchGlob "[a-d-z]" "d" `shouldBe` True
-    --         it "matches -" $
-    --             matchGlob "[a-d-z]" "-" `shouldBe` True
-    --         it "matches z" $
-    --             matchGlob "[a-d-z]" "z" `shouldBe` True
-    --     describe "[z-a]" $ do
-    --         it "shouldn't matches anything" $
-    --             matchGlob "[z-a]" "a" `shouldBe` False    
-    --         it "shouldn't matches anything" $
-    --             matchGlob "[z-a]" "z" `shouldBe` False  
+    describe "set match" $ do
+        describe "[ab[c]" $ do
+            it "matches a" $
+                matchGlob "[ab[c]" "a" `shouldBe` True
+            it "matches b" $
+                matchGlob "[ab[c]" "b" `shouldBe` True
+            it "matches [" $
+                matchGlob "[ab[c]" "[" `shouldBe` True
+            it "matches c" $
+                matchGlob "[ab[c]" "c" `shouldBe` True
+        describe "[abcd]" $ do
+            it "matches a" $
+                matchGlob "[abcd]" "a" `shouldBe` True
+            it "matches b" $
+                matchGlob "[abcd]" "b" `shouldBe` True
+            it "matches c" $
+                matchGlob "[abcd]" "c" `shouldBe` True
+            it "matches d" $
+                matchGlob "[abcd]" "d" `shouldBe` True
+        describe "[\\a-\\z]" $ do
+            it "matches a" $
+                matchGlob "[\\a-\\z]" "a" `shouldBe` True
+            it "matches b" $
+                matchGlob "[\\a-\\z]" "b" `shouldBe` True
+            it "matches y" $
+                matchGlob "[\\a-\\z]" "y" `shouldBe` True
+            it "matches z" $
+                matchGlob "[\\a-\\z]" "z" `shouldBe` True
+            it "not matches \\" $
+                matchGlob "[\\a-\\z]" "\\" `shouldBe` False
+        describe "[-abc]" $ do
+            it "matches a" $
+                matchGlob "[-abc]" "-" `shouldBe` True
+            it "matches b" $
+                matchGlob "[-abc]" "a" `shouldBe` True
+            it "matches c" $
+                matchGlob "[-abc]" "b" `shouldBe` True
+            it "matches z" $
+                matchGlob "[-abc]" "c" `shouldBe` True
+        describe "[abc-]" $ do
+            it "matches a" $
+                matchGlob "[abc-]" "a" `shouldBe` True
+            it "matches b" $
+                matchGlob "[abc-]" "b" `shouldBe` True
+            it "matches c" $
+                matchGlob "[abc-]" "c" `shouldBe` True
+            it "matches -" $
+                matchGlob "[abc-]" "-" `shouldBe` True
+        describe "[--]" $ do
+            it "matches -" $
+                matchGlob "[--]" "-" `shouldBe` True
+        describe "[---]" $ do
+            it "matches -" $
+                matchGlob "[---]" "-" `shouldBe` True
+        describe "[----]" $ do
+            it "matches -" $
+                matchGlob "[----]" "-" `shouldBe` True
+        describe "[a-d-z]" $ do
+            it "matches a" $
+                matchGlob "[a-d-z]" "a" `shouldBe` True
+            it "matches b" $
+                matchGlob "[a-d-z]" "b" `shouldBe` True
+            it "matches c" $
+                matchGlob "[a-d-z]" "c" `shouldBe` True
+            it "matches d" $
+                matchGlob "[a-d-z]" "d" `shouldBe` True
+            it "matches -" $
+                matchGlob "[a-d-z]" "-" `shouldBe` True
+            it "matches z" $
+                matchGlob "[a-d-z]" "z" `shouldBe` True
+        describe "[z-a]" $ do
+            it "shouldn't matches anything" $
+                matchGlob "[z-a]" "a" `shouldBe` False    
+            it "shouldn't matches anything" $
+                matchGlob "[z-a]" "z" `shouldBe` False  
 
     describe "time complexity" $ do
         it "should match" $
