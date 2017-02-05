@@ -3,7 +3,7 @@ module Globber (matchGlob) where
 type GlobPattern = String
 
 data GlobChar = Literal Char
-            |   OneChar String
+            |   Set String
             |   AnyChar
             |   AnyString deriving (Show, Eq)
 
@@ -13,20 +13,19 @@ parseGlobString :: GlobPattern -> GlobString
 parseGlobString [] = []
 parseGlobString ('*':cs) = AnyString:parseGlobString cs
 parseGlobString ('?':cs) = AnyChar:parseGlobString cs
-parseGlobString ('[':cs) = let (s1, s2) = findParen cs in (OneChar (convertDash s1)):parseGlobString s2
-    where findParen [] = error "Invalid bracket ["
-          findParen (']':xs) = ("", xs)
-          findParen ('\\':x:xs) = let (s1, s2) = findParen xs in (x:s1, s2)
-          findParen (x:xs) = let (s1, s2) = findParen xs in (x:s1, s2)
-          convertDash [] = []
-          convertDash (l:'-':r:xs) = [l..r] ++ (convertDash xs)
-          convertDash (x:xs) = x:(convertDash xs)
+parseGlobString ('[':cs) = let (s1, s2) = convertSet cs in (Set s1):parseGlobString s2
+    where convertSet [] = error "Invalid bracket ["
+          convertSet (']':xs) = ("", xs)
+          convertSet ('\\':x:xs) = let (s1, s2) = convertSet xs in (x:s1, s2)
+          convertSet (l:'-':r:xs) | r == ']' = ([l, '-'], xs)
+                                  | otherwise = let (s1, s2) = convertSet xs in ([l..r] ++ s1, s2)
+          convertSet (x:xs) = let (s1, s2) = convertSet xs in (x:s1, s2)
 parseGlobString ('\\':c:cs) = Literal c:parseGlobString cs
 parseGlobString (c:cs) = Literal c:parseGlobString cs
 
 matchGlobChar :: GlobChar -> Char -> Bool
 matchGlobChar (Literal gc) c = gc == c
-matchGlobChar (OneChar str) c = elem c str
+matchGlobChar (Set str) c = elem c str
 matchGlobChar AnyChar _ = True
 matchGlobChar _ _ = False
 

@@ -61,17 +61,15 @@ main = hspec $ describe "Testing Globber" $ do
                 matchGlob "[abcd]" "c" `shouldBe` True
             it "matches d" $
                 matchGlob "[abcd]" "d" `shouldBe` True
-        describe "[\\a-\\z]" $ do
+        describe "[a-z]" $ do
             it "matches a" $
-                matchGlob "[\\a-\\z]" "a" `shouldBe` True
+                matchGlob "[a-z]" "a" `shouldBe` True
             it "matches b" $
-                matchGlob "[\\a-\\z]" "b" `shouldBe` True
+                matchGlob "[a-z]" "b" `shouldBe` True
             it "matches y" $
-                matchGlob "[\\a-\\z]" "y" `shouldBe` True
+                matchGlob "[a-z]" "y" `shouldBe` True
             it "matches z" $
-                matchGlob "[\\a-\\z]" "z" `shouldBe` True
-            it "not matches \\" $
-                matchGlob "[\\a-\\z]" "\\" `shouldBe` False
+                matchGlob "[a-z]" "z" `shouldBe` True
         describe "[-abc]" $ do
             it "matches a" $
                 matchGlob "[-abc]" "-" `shouldBe` True
